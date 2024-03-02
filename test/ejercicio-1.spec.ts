@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { describe, it } from 'mocha';
-import { Thing } from '../src/ejercicio-1/things';
+import { Thing, Book, Clothing, Furniture } from '../src/ejercicio-1/things';
 import { Box, BoxPrinter } from '../src/ejercicio-1/box';
 
 describe('Ejercicio 1', () => {
@@ -9,7 +9,13 @@ describe('Ejercicio 1', () => {
     it('getName() debería devolver el nombre correcto', () => {
       const name = 'test';
       const thing = new Thing(name);
+      const book = new Book(name, 23);
+      const clothing = new Clothing(name, 56);
+      const furniture = new Furniture(name, 'metal');
       expect(thing.getName()).to.equal(name);
+      expect(book.getName()).to.equal(name);
+      expect(clothing.getName()).to.equal(name);
+      expect(furniture.getName()).to.equal(name);
     });
   
     it('print() debería imprimir la salida correcta', () => {
