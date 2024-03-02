@@ -1,4 +1,4 @@
-import { Bill } from './bill';
+import { Billv2 } from './bill';
 import { Strategy } from './strategies';
 
 /**
@@ -10,7 +10,7 @@ export class Generator {
    * @param bill La factura que vamos a generar
    * @param strategy El formato (estrategia) que se va a generar
    */
-  constructor(private bill: Bill, private strategy: Strategy) {}
+  constructor(private bill: Billv2, private strategy: Strategy) {}
 
   /**
    * Setter para la estrategia
