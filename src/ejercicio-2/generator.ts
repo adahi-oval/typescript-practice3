@@ -10,7 +10,7 @@ export class Generator {
    * @param bill La factura que vamos a generar
    * @param strategy El formato (estrategia) que se va a generar
    */
-  constructor(private bill: Billv2, private strategy: Strategy) {}
+  constructor(protected bill: Billv2, protected strategy: Strategy) {}
 
   /**
    * Setter para la estrategia
@@ -26,4 +26,23 @@ export class Generator {
   generate(): void {
     this.strategy.execute(this.bill);
   }
+}
+
+/**
+ * Segunda versión de la clase Generator, cambia generate() para que devuelva un string para las pruebas mas sencillas
+ */
+export class Generatorv2 extends Generator {
+  /**
+   * Crea una instancia de la clase Generator para generar la factura
+   * @param bill La factura a generar
+   * @param strategy El formato que se va a generar
+   */
+  constructor(protected bill: Billv2, protected strategy: Strategy) {
+    super(bill, strategy);
+  }
+
+  generate(): string {
+    return this.strategy.execute(this.bill);
+  }
+
 }
