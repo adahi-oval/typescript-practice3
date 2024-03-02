@@ -1,5 +1,7 @@
 # Práctica 6 - CLases e Interfaces genéricas y principios SOLID
 
+[![Coverage Status](https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct06-generics-solid-adahi-oval/badge.svg?branch=main)](https://coveralls.io/github/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct06-generics-solid-adahi-oval?branch=main)
+
 ## Introducción
 
 En esta práctica se presentan 5 ejercicios diseñados para familiarizarnos con las clases e interfaces genéricas, así como con los principios SOLID. Para ello se han desarrollado estos 5 ejercicios en la carpeta `src` y sus correspondientes pruebas en la carpeta `test`. 
@@ -44,8 +46,22 @@ Se ha modificado ligeramente el código para que los métodos que hacían `conso
 
 ## Ejercicio 4 - Impresoras y escáneres
 
-En eset ejercicio, el código fuente incumple el principio **Interface Segregation**, ya que tiene una interfaz `PrintableScannable` que se implementa en todas las clases. Esto da lugar a problemas, ya que ahora la clase `Printer` por ejemplo, debe tener un método vacío `scan` para cumplir con la forma descrita por la interfaz.
+En este ejercicio, el código fuente incumple el principio **Interface Segregation**, ya que tiene una interfaz `PrintableScannable` que se implementa en todas las clases. Esto da lugar a problemas, ya que ahora la clase `Printer` por ejemplo, debe tener un método vacío `scan` para cumplir con la forma descrita por la interfaz.
 
 Para solucionar estos problemas se ha separado la interfaz *`PrintableScannable`* en *`Printable`* y *`Scannable`*, implementando cada una en las clases necesarias. Por ejemplo, `Printer` ahora solo implementa la interfaz *`Printable`*, `Scanner` solo implementa la interfaz *`Scannable`* y `PrinterScanner` implementa ambas. De esta manera, se soluciona el problema de tener que declarar métodos innecesarios para cumplir la forma de una interfaz general, cumpliendo así el principio **Interface Segregation**.
 
 ## Ejercicio 5 - Servicio de mensajería
+
+En este ejercicio, el código fuente incumple el principio **Dependency Inversion**. Esto se puede ver en la clase `Notifier` del código fuente proporcionado, ya que limita el tipo del atributo *notificationService* de manera muy directa. Esto traería problemas si por ejemplo quisiéramos añadir más servicios de notificación más adelante. Para que el código respete el principio **Dependency Inversion** se ha creado una interfaz *`Service`* que describe la forma de un servicio de notificación, esto es, que tiene un método `notify(message: string)` y se ha hecho que `EmailService` y `ShortMessageService` implementen esta interfaz. A su vez, se ha cambiado la clase `Notifier` para que su atributo *notificationService* sea de tipo `Service`, limitando así el tipo del atributo y permitiéndonos añadir más tipos de servicios cómodamente más adelante. 
+
+## Conclusiones
+
+En esta práctica se ha aprendido tanto a desarrollar código bajo los principios **SOLID** como a modificar código existente para ajustarse a los mismos. A su vez, también se ha hecho familiar el trabajo con clases e interfaces genéricas y se han demostrado sus ventajas tanto a largo como a corto plazo, para extender los proyectos o para mantener su retrocompatibilidad. También se ha aprendido a realizar pruebas para un completo cubrimiento del código y su seguimiento y publicación mediante [Instanbul](https://istanbul.js.org/) y [Coveralls](https://coveralls.io/).
+
+## Bibliografía
+
+- [Vídeo de cubrimiento de código mediante Instanbul y Coveralls](https://drive.google.com/file/d/1xLDc4CpoYpsAlCFO_4DMwu7MKCtcZDnh/view)
+- [Apuntes de la asignatura](https://ull-esit-inf-dsi-2324.github.io/typescript-theory/)
+  - [Principios SOLID](https://ull-esit-inf-dsi-2324.github.io/typescript-theory/typescript-solid.html)
+  - [Clases e interfaces genéricas](https://ull-esit-inf-dsi-2324.github.io/typescript-theory/typescript-generics.html)
+  - [Patrones de diseño en typescript](https://ull-esit-inf-dsi-2324.github.io/typescript-theory/typescript-patterns.html#strategy)
